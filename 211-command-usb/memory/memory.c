@@ -73,8 +73,8 @@ void mem_info(void)
     );
     // итог: свободно во флеш-памяти из всего её объёма
     printf("  flash free  %9u of %u\n", 
-        XIP_BASE + XIP_SIZE - (uintptr_t)&__flash_binary_end,
-        XIP_SIZE
+        XIP_BASE + PICO_FLASH_SIZE_BYTES - (uintptr_t)&__flash_binary_end,
+        PICO_FLASH_SIZE_BYTES
     );
     // итог: занято в ОЗУ — .data и .bss
     printf("  ram used   %9u = data %u + bss %u\n", 
