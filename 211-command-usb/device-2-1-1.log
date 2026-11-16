@@ -1,0 +1,16 @@
+задание: 2.1.1
+проект: 211-command-usb
+устройство: 2e8a:000a
+серийный номер: E66098F29B477B39
+порт: COM7
+начало: 2026-11-16T11:45:43
+   3.590 --> enable
+   6.746 <-- enable
+  10.353 --> disable
+  19.678 <-- inf handle_command:32 led on
+  21.511 --> info
+  23.259 <-- disable
+  26.131 --> nosuchcommand
+  27.481 <-- inf handle_command:38 led off
+  29.111 <-- info
+итог: отправлено команд 4, принято строк 5
