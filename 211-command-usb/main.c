@@ -4,6 +4,7 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
+#include "memory.h"
 #include "command.h"
 #include "device.h"
 #include "led.h"
@@ -55,12 +56,18 @@ void cmd_ping(void)
     printf("pong\n");
 }
 
+void cmd_mem_info(void)
+{
+    mem_info();
+}
+
 const struct command_t commands[] = {
     { "enable", cmd_enable },
     { "disable", cmd_disable },
     { "info", cmd_info },
     { "version", cmd_version },
     { "ping", cmd_ping },
+    { "mem_info", cmd_mem_info },
 };
 
 void handle_command(const char *command)
