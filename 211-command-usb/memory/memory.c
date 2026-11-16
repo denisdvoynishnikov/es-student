@@ -28,7 +28,6 @@ static void row(const char *name, uintptr_t start, uintptr_t end)
     printf("%-10s 0x%08x 0x%08x %8u\n", name, (unsigned)start, (unsigned)end, (unsigned)(end - start));
 }
 
-#define XIP_SIZE _u(0x200000)
 #define ROM_SIZE _u(0x4000)
 
 void mem_info(void)
@@ -36,7 +35,7 @@ void mem_info(void)
     // шапка таблицы: область, начало, конец, размер
     title();
     // flash — XIP_BASE и PICO_FLASH_SIZE_BYTES
-    row("flash", XIP_BASE, XIP_BASE + XIP_SIZE);
+    row("flash", XIP_BASE, XIP_BASE + PICO_FLASH_SIZE_BYTES);
     // sram — базовый адрес из SDK, размер из datasheet
     row("sram", SRAM_BASE, SRAM_END);
     // rom — базовый адрес из SDK, размер из datasheet
@@ -45,7 +44,7 @@ void mem_info(void)
     // image — от __flash_binary_start до __flash_binary_end
     row("image", (uintptr_t)&__flash_binary_start, (uintptr_t)&__flash_binary_end);
     // free  — от __flash_binary_end до конца флеш-памяти
-    row("free", (uintptr_t)&__flash_binary_end, XIP_BASE + XIP_SIZE);
+    row("free", (uintptr_t)&__flash_binary_end, XIP_BASE + PICO_FLASH_SIZE_BYTES);
     // boot2 — от __boot2_start__ до __boot2_end__
     row("boot2", (uintptr_t)&__boot2_start__, (uintptr_t)&__boot2_end__);
     // text  — от __boot2_end__ до __etext: код и константы
