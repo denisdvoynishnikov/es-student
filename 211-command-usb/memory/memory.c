@@ -152,3 +152,8 @@ void fw_info(void)
     // возвращаем блок кучи
     free(heap_variable);
 }
+
+void boot_info()
+{
+    
+}
