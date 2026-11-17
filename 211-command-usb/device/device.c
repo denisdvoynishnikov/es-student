@@ -1,11 +1,19 @@
 #include "device.h"
 
+#include <stddef.h>
 #include <stdio.h>
+
 #include "pico/version.h"
 #include "pico/unique_id.h"
 
 #include "hardware/regs/addressmap.h"
 #include "hardware/regs/sysinfo.h"
+
+struct info_t device_card = {
+    .revision = 2,
+    .version = 0x00010000,
+    .name = "es-cmd-usb",
+};
 
 void device_info(void)
 {
@@ -28,4 +36,16 @@ void device_info(void)
     printf("serial: %s\n", board_id);
     printf("chip: manufacturer 0x%03x, part 0x%04x, revision %u\n", manufacturer, part, revision);
     printf("pico-sdk: %s\n", PICO_SDK_VERSION_STRING);
+}
+
+void dev_info()
+{
+    printf("%-15s %-10s %-6s %-6s %s\n", "Struct", "Address", "Size", "Offset", "Value");
+    printf("%-15s 0x%08x %6u\n", "device_card", &device_card, sizeof(device_card));
+    printf("- %-13s 0x%08x %6u %6u %u\n", "revision", &device_card.revision, sizeof(device_card.revision),offsetof(struct info_t, revision),device_card.revision);
+    printf("- %-13s 0x%08x %6u %6u 0x%08x\n", "version", &device_card.version, sizeof(device_card.version),offsetof(struct info_t, version),device_card.version);
+    printf("- %-13s 0x%08x %6u %6u %s\n", "name", &device_card.name, sizeof(device_card.name),offsetof(struct info_t, name),device_card.name);
+    
+    unsigned fields = sizeof(device_card.version) + sizeof(device_card.name) + sizeof(device_card.revision);
+    printf("Fields %u, sizeof %u, padding %u\n", fields, sizeof(device_card), sizeof(device_card) - fields);
 }
