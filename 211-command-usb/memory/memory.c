@@ -153,7 +153,16 @@ void fw_info(void)
     free(heap_variable);
 }
 
-void boot_info()
+void boot_info(void)
 {
-    
+    // указатель на таблицу векторов и два первых слова из неё
+    // указатель на регистр GPIO_IN и разряд вывода светодиода
+
+    // vector table   — адрес таблицы
+    //   stack top    — первое слово
+    //   reset        — второе слово
+    //   reset (even) — оно же со сброшенным признаком Thumb
+    // gpio in        — адрес регистра
+    //   led bit      — разряд из регистра
+    //   gpio_get     — то же значение через SDK
 }

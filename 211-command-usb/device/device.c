@@ -40,7 +40,7 @@ void device_info(void)
 
 void dev_info(void)
 {
-    printf("%-15s %-11s %-4s %-6s %s\n", "Struct", "Address", "Size", "Offset", "Value");
+    printf("%-15s %-11s %-4s %-6s %s\n", "struct", "address", "size", "offset", "value");
     printf("%-15s 0x%08x %5u\n", "device_card", &device_card, sizeof(device_card));
     printf("- %-13s 0x%08x %5u %6u 0x%08x\n", "version", &device_card.version, sizeof(device_card.version),offsetof(struct info_t, version),device_card.version);
     printf("- %-13s 0x%08x %5u %6u %s\n", "name", &device_card.name, sizeof(device_card.name),offsetof(struct info_t, name),device_card.name);
