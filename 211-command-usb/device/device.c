@@ -38,7 +38,7 @@ void device_info(void)
     printf("pico-sdk: %s\n", PICO_SDK_VERSION_STRING);
 }
 
-void dev_info()
+void dev_info(void)
 {
     printf("%-15s %-10s %-6s %-6s %s\n", "Struct", "Address", "Size", "Offset", "Value");
     printf("%-15s 0x%08x %6u\n", "device_card", &device_card, sizeof(device_card));
