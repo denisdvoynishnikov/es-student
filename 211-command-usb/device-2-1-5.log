@@ -12,5 +12,5 @@
    0.250 <-- - version       0x20000f58     4      0 0x00010000
    0.252 <-- - name          0x20000f5c    13      4 es-cmd-usb
    0.254 <-- - revision      0x20000f69     1     17 2
-   0.263 <-- Fields 18, sizeof 20, padding 2
+   0.263 <-- fields 18, sizeof 20, padding 2
 итог: отправлено команд 1, принято строк 8
