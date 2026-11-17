@@ -121,8 +121,8 @@ void fw_info(void)
     printf("%-15s %-10s %-10s\n", "Object", "Address", "Value");
 
     // main, fw_info  — адрес с признаком Thumb и два байта по сброшенному адресу
-    printf("%-15s 0x%08x 0x%08x\n", "main", main_code, *main_code);
-    printf("%-15s 0x%08x 0x%08x\n", "fw_info", fw_info_code, *fw_info_code);
+    printf("%-15s 0x%08x 0x%04x\n", "main", main_code, *main_code);
+    printf("%-15s 0x%08x 0x%04x\n", "fw_info", fw_info_code, *fw_info_code);
     
     // commands       — адрес массива
     printf("%-15s 0x%08x\n", "commands", commands);
@@ -134,20 +134,20 @@ void fw_info(void)
     }
 
     // константы      — адрес и значение строк паспорта из device.h
-    printf("%-15s 0x%08x 0x%08x\n", "DEVICE_PROJECT", &DEVICE_PROJECT, DEVICE_PROJECT);
-    printf("%-15s 0x%08x 0x%08x\n", "DEVICE_BOARD", &DEVICE_BOARD, DEVICE_BOARD);
+    printf("%-15s 0x%08x %s\n", "DEVICE_PROJECT", &DEVICE_PROJECT, DEVICE_PROJECT);
+    printf("%-15s 0x%08x %s\n", "DEVICE_BOARD", &DEVICE_BOARD, DEVICE_BOARD);
 
     // data_variable  — адрес и значение, секция .data
-    printf("%-15s 0x%08x 0x%08x\n", "data_variable", &data_variable, data_variable);
+    printf("%-15s 0x%08x %u\n", "data_variable", &data_variable, data_variable);
 
     // bss_variable   — адрес и значение, секция .bss
-    printf("%-15s 0x%08x 0x%08x\n", "bss_variable", &bss_variable, bss_variable);
+    printf("%-15s 0x%08x %u\n", "bss_variable", &bss_variable, bss_variable);
 
     // stack_variable — адрес и значение
-    printf("%-15s 0x%08x 0x%08x\n", "stack_variable", &stack_variable, stack_variable);
+    printf("%-15s 0x%08x %u\n", "stack_variable", &stack_variable, stack_variable);
 
     // heap_variable  — адрес и значение
-    printf("%-15s 0x%08x 0x%08x\n", "heap_variable", heap_variable, *heap_variable);
+    printf("%-15s 0x%08x %u\n", "heap_variable", heap_variable, *heap_variable);
 
     // возвращаем блок кучи
     free(heap_variable);
