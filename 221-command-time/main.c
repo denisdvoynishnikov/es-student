@@ -9,6 +9,7 @@
 #include "led.h"
 #include "log.h"
 #include "clock.h"
+#include "profiling.h"
 
 const uint BLINK_HALF_PERIOD_MS = 500;
 
@@ -105,6 +106,17 @@ void cmd_uptime(void)
     uptime();
 }
 
+void cmd_main_time_exec(void)
+{
+    printf("iteration avg %.2f us, max %u us\n", profiling_avg_us(), (unsigned)profiling_max_us());
+}
+
+void cmd_main_time_reset(void)
+{
+    profiling_reset_max();
+    printf("max reset\n");
+}
+
 const struct command_t commands[] = {
     { "info", cmd_info },
     { "version", cmd_version },
@@ -116,6 +128,8 @@ const struct command_t commands[] = {
     { "clk_info", cmd_clk_info },
     { "uptime", cmd_uptime },
     { "calc_pi", cmd_calc_pi },
+    { "main_time_exec", cmd_main_time_exec },
+    { "main_time_reset", cmd_main_time_reset },
 };
 
 const uint command_count = sizeof(commands) / sizeof(commands[0]);
@@ -181,8 +195,12 @@ int main()
 
     led_init();
 
+    profiling_init();
+
     while (1)
     {
+        profiling_iteration();
+
         blink();
 
         read_line();
